@@ -7,11 +7,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Set OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-
-# Define AI Agent
 class FeedbackAnalyzer(Agent):  # Inheriting from CrewAI's Agent
     def __init__(self):
         super().__init__(
@@ -37,7 +34,7 @@ class FeedbackAnalyzer(Agent):  # Inheriting from CrewAI's Agent
         return response.choices[0].message.content
 
 
-# Define Task
+# Task
 def analyze_feedback(feedback_id):
     db = SessionLocal()
     feedback = db.query(Feedback).filter(Feedback.id == feedback_id).first()
